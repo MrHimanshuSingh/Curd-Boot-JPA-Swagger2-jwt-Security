@@ -3,36 +3,46 @@ package com.springboot.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.springboot.pojo.Customer;
+import com.springboot.repository.MyRepo;
 
 public class MyServiceImpl implements MyService {
-	
+
 	@Autowired
-	private JpaRepository<Customer,String> jpaRepository;
-	
+	private MyRepo jpaRepository;
+
 	@Override
 	public String add(Customer customer) {
-		jpaRepository.save(customer);
-		return null;
+		Optional<Customer> optCust = get(customer.getCustomer_Id());
+		if (optCust.isEmpty())
+			return (jpaRepository.save(customer) != null) ? "Inserted" : "NotInserted";
+		else
+			return "AlreadyExisted";
+
 	}
 
 	@Override
 	public String update(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Customer> optCust = get(customer.getCustomer_Id());
+		if (optCust.isPresent())
+			return (jpaRepository.save(customer) != null) ? "Updated" : "NotUpdated";
+		else
+			return "NotExist";
 	}
 
 	@Override
-	public Optional<Customer> get(Integer sid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Customer> get(Integer cid) {
+		return jpaRepository.findById(String.valueOf(cid));
 	}
 
 	@Override
 	public String delete(Integer cid) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Customer> optCust = get(cid);
+		if (optCust.isPresent()) {
+			jpaRepository.deleteById(String.valueOf(cid));
+			return "deleted";
+		} else
+			return "NotExist";
 	}
 }
