@@ -8,10 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@AllArgsConstructor 
 @Data
 @Entity
 public class Customer implements Serializable {
@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer customer_Id;
+	private String customer_Id;
 	
 	@NotEmpty(message = "Mandatory Field")
 	private String customer_Name, customer_Surname, customer_Gender;

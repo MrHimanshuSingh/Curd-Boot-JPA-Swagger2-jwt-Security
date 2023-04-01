@@ -3,10 +3,12 @@ package com.springboot.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springboot.pojo.Customer;
 import com.springboot.repository.MyRepo;
 
+@Service
 public class MyServiceImpl implements MyService {
 
 	@Autowired
@@ -32,15 +34,15 @@ public class MyServiceImpl implements MyService {
 	}
 
 	@Override
-	public Optional<Customer> get(Integer cid) {
-		return jpaRepository.findById(String.valueOf(cid));
+	public Optional<Customer> get(String cid) {
+		return jpaRepository.findById(cid);
 	}
 
 	@Override
-	public String delete(Integer cid) {
+	public String delete(String cid) {
 		Optional<Customer> optCust = get(cid);
 		if (optCust.isPresent()) {
-			jpaRepository.deleteById(String.valueOf(cid));
+			jpaRepository.deleteById(cid);
 			return "deleted";
 		} else
 			return "NotExist";

@@ -10,8 +10,8 @@ public interface MyService {
 
 	String update(Customer customer);
 
-	Optional<Customer> get(Integer sid);
+	Optional<Customer> get(String sid);
 
-	String delete(Integer cid);
+	String delete(String cid);
 	
 }
