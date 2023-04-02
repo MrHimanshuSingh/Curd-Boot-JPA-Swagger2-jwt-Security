@@ -8,7 +8,10 @@ import com.springboot.pojo.Customer;
 import com.springboot.service.MyService;
 import com.springboot.service.MyServiceImpl;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
+
 public class CrudBootJpaSwagger2JwtSecurityApplication {
 
 	public static void main(String[] args) {
