@@ -11,7 +11,7 @@ import com.springboot.service.MyServiceImpl;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-
+//@EnableSwagger2
 public class CrudBootJpaSwagger2JwtSecurityApplication {
 
 	public static void main(String[] args) {
