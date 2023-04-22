@@ -2,7 +2,6 @@ package com.springboot.pojo;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,7 +39,6 @@ public class Customer implements Serializable {
 
 	@Id
 	@NotEmpty(message = "Mandatroy Field")
-	@Column(name = "Email")
 	private String customer_Email;
 
 }
