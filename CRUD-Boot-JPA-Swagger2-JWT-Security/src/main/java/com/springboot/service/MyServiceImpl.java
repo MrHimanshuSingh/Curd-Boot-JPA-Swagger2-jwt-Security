@@ -1,5 +1,6 @@
 package com.springboot.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,10 @@ public class MyServiceImpl implements MyService {
 			return "deleted";
 		} else
 			return "NotExist";
+	}
+	
+	@Override
+	public List<Customer> getAll() {
+		return jpaRepository.findAll();
 	}
 }

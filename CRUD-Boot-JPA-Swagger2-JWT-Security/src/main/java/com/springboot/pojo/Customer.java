@@ -13,13 +13,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor 
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 public class Customer implements Serializable {
-
-
 
 	public Customer(@NotEmpty(message = "Mandatory Field") String customer_Name,
 			@NotEmpty(message = "Mandatory Field") String customer_Surname,
@@ -33,13 +31,13 @@ public class Customer implements Serializable {
 	}
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customer_Id;
-	
+
 	@NotEmpty(message = "Mandatory Field")
 	private String customer_Name, customer_Surname, customer_Gender;
-	
+
 	@Id
 	@NotEmpty(message = "Mandatroy Field")
 	@Column(name = "Email")

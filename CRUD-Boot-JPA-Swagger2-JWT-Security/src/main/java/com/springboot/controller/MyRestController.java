@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,44 +25,52 @@ public class MyRestController {
 	@Autowired
 	private MyService service;
 
-	@SuppressWarnings("rawtypes")
-	@GetMapping("get/{id}")
-	public ResponseEntity getData(@PathVariable("id") String cid) {
-		Optional<Customer> optCust = service.get(cid);
-		if (optCust.isPresent())
-			return ResponseEntity.of(optCust);
-		else
-			return ResponseEntity.notFound().build();
+	@GetMapping("/get/{email}")
+	public ResponseEntity<Object> getData(@PathVariable("email") String email) {
+		Optional<Customer> optCust = service.get(email);
+		if (optCust.isPresent()) {
+			return ResponseEntity.ok(optCust.get());
+		} else
+			return ResponseEntity.status(404).body("Not Found");
 	}
 
 	@PostMapping("/add")
 	public ResponseEntity<String> addData(@RequestBody Customer customer) {
 		String status = this.service.add(customer);
-		if(status.equals("Inserted"))
+		if (status.equals("Inserted"))
 			return ResponseEntity.ok(status);
-		if(status.equals("NotInserted"))
+		if (status.equals("NotInserted"))
 			return ResponseEntity.badRequest().body("Something Went Wrong \n please try again");
 		else
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Data Already Exist");
 	}
-	
+
 	@PutMapping("/update")
-	public ResponseEntity<String> update(@RequestBody Customer customer){
+	public ResponseEntity<String> update(@RequestBody Customer customer) {
 		String status = this.service.add(customer);
-		if(status.equals("Updated"))
+		if (status.equals("Updated"))
 			return ResponseEntity.ok(status);
-		if(status.equals("NotUpdated"))
+		if (status.equals("NotUpdated"))
 			return ResponseEntity.badRequest().body("Something Went Wrong \n please try again");
 		else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Data not exist to Update recheck the input");
 	}
-	
-	@DeleteMapping("/delete/{cid}")
-	public ResponseEntity<String> detete(@PathVariable("cid")String cid){
-		String status = this.service.delete(cid);
-		if(status.equals("deleted"))
-			return ResponseEntity.ok("Successfully Inserted");
+
+	@DeleteMapping("/delete/{email}")
+	public ResponseEntity<String> detete(@PathVariable String email) {
+		String status = this.service.delete(email);
+		if (status.equals("deleted"))
+			return ResponseEntity.ok("Successfully Deleted");
 		else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found to Delete recheck the input");
+	}
+	
+	@GetMapping("/getAll")
+	public ResponseEntity<Object> getAll() {
+		List<Customer> allCustomer = service.getAll();
+		if(allCustomer.isEmpty())
+			return ResponseEntity.status(404).body("Empty Data");
+		else
+			return ResponseEntity.ok(allCustomer);
 	}
 }
