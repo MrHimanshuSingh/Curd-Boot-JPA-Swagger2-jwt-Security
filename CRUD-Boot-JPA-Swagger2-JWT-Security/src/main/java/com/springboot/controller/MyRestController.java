@@ -3,6 +3,8 @@ package com.springboot.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.pojo.Customer;
 import com.springboot.service.MyService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 @RequestMapping("/customer/")
 public class MyRestController {
 
 	@Autowired
 	private MyService service;
+	 
 
 	@GetMapping("/get/{email}")
 	public ResponseEntity<Object> getData(@PathVariable("email") String email) {
+		log.info("");
 		Optional<Customer> optCust = service.get(email);
 		if (optCust.isPresent()) {
 			return ResponseEntity.ok(optCust.get());
