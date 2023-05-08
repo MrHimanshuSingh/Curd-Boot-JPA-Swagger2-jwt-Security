@@ -1,4 +1,4 @@
-package com.springboot.swagger;
+package com.springboot.config;
 
 import java.util.ArrayList;
 

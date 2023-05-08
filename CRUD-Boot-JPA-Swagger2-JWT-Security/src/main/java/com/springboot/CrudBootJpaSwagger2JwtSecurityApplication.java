@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.springboot.pojo.Customer;
 import com.springboot.service.MyService;
-import com.springboot.service.MyServiceImpl;
+import com.springboot.serviceImpl.MyServiceImpl;
 
 @SpringBootApplication
 public class CrudBootJpaSwagger2JwtSecurityApplication {
