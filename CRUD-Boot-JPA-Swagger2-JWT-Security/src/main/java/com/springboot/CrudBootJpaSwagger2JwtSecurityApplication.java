@@ -15,8 +15,8 @@ public class CrudBootJpaSwagger2JwtSecurityApplication {
 		ApplicationContext context = SpringApplication.run(CrudBootJpaSwagger2JwtSecurityApplication.class, args);
 		MyService service = (MyService) context.getBean(MyServiceImpl.class);
 		for (int a = 1; a <= 5; a++) {
-			Customer customer = new Customer( a,"Name" + a, "Surname" + a, (a % 2 == 0) ? "Male" : "Female","hima"+a+"@gmail.com");
-			service.add(customer);
+//			Customer customer = new Customer( a,"Name" + a, "Surname" + a, (a % 2 == 0) ? "Male" : "Female","hima"+a+"@gmail.com");
+//			service.add(customer);
 		}
 	}
 

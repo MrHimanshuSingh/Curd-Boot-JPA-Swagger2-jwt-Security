@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RedisDaoImpl implements RedisDao {
 
 	@Autowired
-	private RedisTemplate<String, Customer> template;
+	private RedisTemplate<String, Object> template;
 
 	private static final String KEY = "Customer";
 
