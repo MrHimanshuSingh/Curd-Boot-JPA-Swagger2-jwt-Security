@@ -14,8 +14,13 @@ import com.springboot.service.MyService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Service
+/**
+ * 		
+ * @apiNote 
+ *
+ */
 @Slf4j
+@Service
 public class MyServiceImpl implements MyService {
 
 	@Autowired
