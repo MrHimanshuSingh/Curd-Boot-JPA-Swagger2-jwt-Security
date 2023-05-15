@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.pojo.Admin;
 import com.springboot.repository.AdminRepo;
 /**
- * @apiNote Spring Security
+ * @apiNote Spring Security Service
  * 
  *
  */

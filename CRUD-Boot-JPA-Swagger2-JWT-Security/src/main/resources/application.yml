@@ -1,0 +1,5 @@
+#jwt Validaty in minutes
+jwt:
+  validaty: 15
+  secret:
+    key: fMCmrCoqOl/f7zhr89R9+Q==
