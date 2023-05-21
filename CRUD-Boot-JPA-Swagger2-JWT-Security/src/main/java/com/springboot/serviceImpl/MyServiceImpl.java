@@ -15,14 +15,16 @@ import com.springboot.service.MyService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 		
- * @apiNote 
+ * 
+ * @apiNote
  *
  */
 @Slf4j
 @Service
 public class MyServiceImpl implements MyService {
-
+	
+	private final String errorMessage = "Something went wrong";
+	
 	@Autowired
 	private MyRepo jpaRepository;
 
@@ -32,18 +34,18 @@ public class MyServiceImpl implements MyService {
 		try {
 
 			log.debug("MyServiceImpl >> get() >> processing");
-			Optional<Customer> optCust = get(customer.getCustomer_Email());
+			Optional<Customer> optCust = get(customer.getCustomerEmail());
 			if (optCust.isEmpty()) {
-				String status = (jpaRepository.save(customer) != null) ? "Inserted" : "NotInserted";
-				log.info("MyServiceImpl >> update() >> {} ", customer.getCustomer_Name() + " is " + status);
-				return status;
+				jpaRepository.save(customer);
+				log.info("MyServiceImpl >> update() >> {} is saved", customer.getCustomerName());
+				return "Inserted";
 			} else {
-				log.info("MyServiceImpl >> update() >> {} AlreadyExist", customer.getCustomer_Name());
+				log.info("MyServiceImpl >> update() >> {} AlreadyExist", customer.getCustomerName());
 				return "AlreadyExisted";
 			}
 		} catch (Exception e) {
-			log.error(e.toString());
-			return "Something went wrong";
+			log.error("add >> {}",e.toString());
+			return errorMessage;
 		}
 
 	}
@@ -53,17 +55,18 @@ public class MyServiceImpl implements MyService {
 	public String update(Customer customer) {
 		try {
 			log.debug("MyServiceImpl >> update() >> processing");
-			Optional<Customer> optCust = get(customer.getCustomer_Email());
+			Optional<Customer> optCust = get(customer.getCustomerEmail());
 			if (optCust.isPresent()) {
-				log.info("MyServiceImpl >> update() >> {} update", customer.getCustomer_Name());
-				return (jpaRepository.save(customer) != null) ? "Updated" : "NotUpdated";
+				jpaRepository.save(customer);
+				log.info("MyServiceImpl >> update() >> {} updated", customer.getCustomerName());
+				return "Updated";
 			} else {
-				log.info("MyServiceImpl >> update() >> {} NotExist", customer.getCustomer_Name());
+				log.info("MyServiceImpl >> update() >> {} NotExist", customer.getCustomerName());
 				return "NotExist";
 			}
 		} catch (Exception e) {
-			log.error(e.toString());
-			return "Something went wrong";
+			log.error("update >> {}",e.toString());
+			return errorMessage;
 
 		}
 	}
@@ -74,7 +77,7 @@ public class MyServiceImpl implements MyService {
 			log.info("MyServiceImpl >> get() >> processing");
 			return jpaRepository.findById(email);
 		} catch (Exception e) {
-			log.error(e.toString());
+			log.error("get >> {}",e.toString());
 			return Optional.empty();
 		}
 	}
@@ -94,8 +97,8 @@ public class MyServiceImpl implements MyService {
 				return "NotExist";
 			}
 		} catch (Exception e) {
-			log.error(e.toString());
-			return "Something went wrong";
+			log.error("delete >> {}",e.toString());
+			return errorMessage;
 		}
 	}
 
@@ -105,7 +108,7 @@ public class MyServiceImpl implements MyService {
 			log.info("MyServiceImpl >> getAll() >> processing");
 			return jpaRepository.findAll();
 		} catch (Exception e) {
-			log.error(e.toString());
+			log.error("getAll >> {}",e.toString());
 			return Collections.emptyList();
 		}
 	}

@@ -1,6 +1,7 @@
 package com.springboot.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -24,8 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Admin admin = adminRepo.findById(username).get();
-		return new User(admin.getAdminName(), admin.getPassword(), new ArrayList<>());
+		Optional<Admin> admin = adminRepo.findById(username);
+		if(admin.isPresent()) {
+			return new User(admin.get().getAdminName(), admin.get().getPassword(), new ArrayList<>());
+		}else
+			return null;
 	}
 
 }

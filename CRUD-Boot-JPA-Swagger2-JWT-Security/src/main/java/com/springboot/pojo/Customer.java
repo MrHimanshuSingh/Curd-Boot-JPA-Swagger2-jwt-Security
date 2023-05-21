@@ -18,27 +18,31 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Customer implements Serializable {
 
-	public Customer(@NotEmpty(message = "Mandatory Field") String customer_Name,
-			@NotEmpty(message = "Mandatory Field") String customer_Surname,
-			@NotEmpty(message = "Mandatory Field") String customer_Gender,
-			@NotEmpty(message = "Mandatroy Field") String customer_Email) {
+	public Customer(@NotEmpty(message = "Mandatory Field") String customerName,
+			@NotEmpty(message = "Mandatory Field") String customerSurname,
+			@NotEmpty(message = "Mandatory Field") String customerGender,
+			@NotEmpty(message = "Mandatroy Field") String customerEmail) {
 		super();
-		this.customer_Name = customer_Name;
-		this.customer_Surname = customer_Surname;
-		this.customer_Gender = customer_Gender;
-		this.customer_Email = customer_Email;
+		this.customerName = customerName;
+		this.customerSurname = customerSurname;
+		this.customerGender = customerGender;
+		this.customerEmail = customerEmail;
 	}
 
 	private static final long serialVersionUID = 1L;
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer customer_Id;
+	private Integer customerId;
 
 	@NotEmpty(message = "Mandatory Field")
-	private String customer_Name, customer_Surname, customer_Gender;
+	private String customerName;
+	@NotEmpty(message = "Mandatory Field")
+	private String customerSurname;
+	@NotEmpty(message = "Mandatory Field")
+	private String customerGender;
 
 	@Id
 	@NotEmpty(message = "Mandatroy Field")
-	private String customer_Email;
+	private String customerEmail;
 
 }

@@ -26,10 +26,9 @@ public class SwaggerConfig {
 				.paths(PathSelectors.any()).build().apiInfo(apiInfo());
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private ApiInfo apiInfo() {
 		return new ApiInfo("Crud_Boot_Jpa_Swagger2_Jwt_Security_Application", "CRUD operation project", "1.0", "Terms of Service",
-				new Contact("Contact_Name","Contact_Url","Contact_email"), "License of Api", "License of Url",new ArrayList());
+				new Contact("Contact_Name","Contact_Url","Contact_email"), "License of Api", "License of Url",new ArrayList<>());
 	}
 	
 //	@Bean

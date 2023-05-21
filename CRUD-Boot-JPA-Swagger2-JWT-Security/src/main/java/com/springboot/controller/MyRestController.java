@@ -3,6 +3,8 @@ package com.springboot.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +32,9 @@ public class MyRestController {
 	 
 
 	@GetMapping("/get/{email}")
-	public ResponseEntity<Object> getData(@PathVariable("email") String email) {
+	public ResponseEntity<Object> getData(@RequestBody HttpServletRequest request, @PathVariable("email") String email) {
 		log.info("");
+		
 		Optional<Customer> optCust = service.get(email);
 		if (optCust.isPresent()) {
 			return ResponseEntity.ok(optCust.get());

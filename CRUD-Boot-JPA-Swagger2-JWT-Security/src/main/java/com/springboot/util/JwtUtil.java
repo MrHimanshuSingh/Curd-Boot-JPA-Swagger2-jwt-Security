@@ -48,5 +48,13 @@ public class JwtUtil {
 	public String getUsername(String token) {
 		return getClaims(token).getSubject();
 	}
-
+	
+	/* Get Token Expiration Date */
+	public Date getExpirationDate(String token) {
+        return getClaims(token).getExpiration();
+    }
+	
+	public Boolean isTokenValid(String token,String username) {
+		return getUsername(token).equals(username) && !isTokenExpired(token);
+	}
 }

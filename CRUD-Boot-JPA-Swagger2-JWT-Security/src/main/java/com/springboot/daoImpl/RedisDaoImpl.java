@@ -27,9 +27,9 @@ public class RedisDaoImpl implements RedisDao {
 	@Override
 	public String add(Customer customer) {
 		try {
-			Optional<Customer> optCustomer = get(customer.getCustomer_Email());
+			Optional<Customer> optCustomer = get(customer.getCustomerEmail());
 			if (!optCustomer.isPresent()) {
-				template.opsForHash().put(KEY, customer.getCustomer_Email(), customer);
+				template.opsForHash().put(KEY, customer.getCustomerEmail(), customer);
 				log.info("RedisDaoImpl>>add>>{} Saved Successfully", customer.toString());
 				return "success";
 			} else {
@@ -45,9 +45,9 @@ public class RedisDaoImpl implements RedisDao {
 	@Override
 	public String update(Customer customer) {
 		try {
-			Optional<Customer> optCustomer = get(customer.getCustomer_Email());
+			Optional<Customer> optCustomer = get(customer.getCustomerEmail());
 			if (optCustomer.isPresent()) {
-				template.opsForHash().put(KEY, customer.getCustomer_Email(), optCustomer.get());
+				template.opsForHash().put(KEY, customer.getCustomerEmail(), optCustomer.get());
 				log.info("RedisDaoImpl>>update>>{} Updated Successfully", customer.toString());
 				return "success";
 			} else {
