@@ -52,14 +52,14 @@ public class MyServiceImpl implements MyService, UserDetailsService {
 	public String add(Customer customer) {
 		try {
 
-			log.debug("MyServiceImpl >> get() >> processing");
+			log.debug("MyServiceImpl >> add() >> processing");
 			Optional<Customer> optCust = get(customer.getCustomerEmail());
 			if (optCust.isEmpty()) {
 				jpaRepository.save(customer);
-				log.info("MyServiceImpl >> update() >> {} is saved", customer.getCustomerName());
+				log.info("MyServiceImpl >> add() >> {} is saved", customer.getCustomerName());
 				return "Inserted";
 			} else {
-				log.info("MyServiceImpl >> update() >> {} AlreadyExist", customer.getCustomerName());
+				log.info("MyServiceImpl >> add() >> {} AlreadyExist", customer.getCustomerName());
 				return "AlreadyExisted";
 			}
 		} catch (Exception e) {
