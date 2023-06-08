@@ -74,7 +74,7 @@ public class MyRestController {
 	}
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<Object> getAll() {
+	public ResponseEntity<?> getAll() {
 		List<Customer> allCustomer = service.getAll();
 		if(allCustomer.isEmpty())
 			return ResponseEntity.status(404).body("Empty Data");
