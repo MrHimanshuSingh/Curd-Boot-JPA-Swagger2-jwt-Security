@@ -9,7 +9,7 @@ import com.springboot.MainApp.model.Country;
 
 public interface CustomRepository extends JpaRepository<Country, Integer> {
 
-	@Query("SELECT C.id,C.conutryName FROM Country C")
+	@Query("SELECT C.id,C.countryName FROM Country C")
 	Set<Country> getcountries();
 
 }

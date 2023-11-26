@@ -27,16 +27,10 @@ public class Country {
 	private Integer id;
 
 	@Column(name = "name")
-	private String conutryName;
+	private String countryName;
 
-	@Column(name = "state_id")
-	@OneToMany(cascade = CascadeType.ALL)
-	private Set<State> statesName;
-
-	public Country(String conutryName, Set<State> statesName) {
-		super();
-		this.conutryName = conutryName;
-		this.statesName = statesName;
-	}
+//	@Column(name = "state_id")
+	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+	private Set<State> states;
 
 }

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,11 +19,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "State")
 public class State {
 
-	public State(String name) {
-		super();
-		this.name = name;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "state_id")
@@ -30,4 +27,13 @@ public class State {
 	@Column(name = "state_name")
 	private String name;
 
+	@ManyToOne
+//	@Column(name = "country_id")
+	@JoinColumn(name = "country_id")
+	private Country country;
+
+	public State(String name) {
+		super();
+		this.name = name;
+	}
 }
