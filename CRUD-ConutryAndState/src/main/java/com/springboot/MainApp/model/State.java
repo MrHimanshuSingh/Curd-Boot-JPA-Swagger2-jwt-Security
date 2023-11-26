@@ -17,6 +17,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "State")
 public class State {
 
+	public State(String name) {
+		super();
+		this.name = name;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "state_id")

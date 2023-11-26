@@ -32,4 +32,11 @@ public class Country {
 	@Column(name = "state_id")
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<State> statesName;
+
+	public Country(String conutryName, Set<State> statesName) {
+		super();
+		this.conutryName = conutryName;
+		this.statesName = statesName;
+	}
+
 }

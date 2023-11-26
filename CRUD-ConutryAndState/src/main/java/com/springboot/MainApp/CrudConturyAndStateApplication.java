@@ -19,17 +19,17 @@ public class CrudConturyAndStateApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext run = SpringApplication.run(CrudConturyAndStateApplication.class, args);
 		CustomRepository repo = run.getBean(CustomRepository.class);
+		
 		Country c1 = new Country();
-		c1.setId(1);
 		c1.setConutryName("Uttar Pradesh");
-		c1.setStatesName(Stream.of(new State(1, "Agra"), new State(2, "Aligarh"), new State(2, "PrayagRaj"),
-				new State(3, "Chitrakoot"), new State(1, "Etawah")).collect(Collectors.toSet()));
+		c1.setStatesName(Stream.of(new State("Agra"), new State("Aligarh"), new State("PrayagRaj"),
+				new State("Chitrakoot"), new State("Etawah")).collect(Collectors.toSet()));
 		repo.save(c1);
-		c1.setId(1);
-		c1.setConutryName("Madhya Pradesh");
-		c1.setStatesName(Stream.of(new State(1, "Chambal"), new State(2, "Gwalior"), new State(2, "Bhopal"),
-				new State(3, "Indore"), new State(1, "Rewa ")).collect(Collectors.toSet()));
-
+		Country c2 = new Country();
+		c2.setConutryName("Madhya Pradesh");
+		c2.setStatesName(Stream.of(new State("Chambal"), new State("Gwalior"), new State("Bhopal"), new State("Indore"),
+				new State("Rewa")).collect(Collectors.toSet()));
+		repo.save(c2);
 	}
 
 }
